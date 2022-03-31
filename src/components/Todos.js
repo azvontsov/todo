@@ -1,8 +1,7 @@
 import React, { useState, useRef} from 'react'
 import { connect } from 'react-redux';
 import { addTodos, removeTodos, updateTodos, completeTodos } from '../redux/reducer';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -43,11 +42,35 @@ const Todos = (props) => {
       completed: false,
      })} >
        Add
-     </Button>
-     <br /><br />
+
+     </button>
+     <br />
+
+      <ul>
+       {
+         props.todos.map(item => {
+           return (
+           <li key={item.id}>
+             <textarea 
+             ref={inputRef} 
+             disabled={inputRef} 
+             defaultValue={item.item} 
+             onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
+             />
+              
+             <button onClick={() => changeFocus()} >Edit</button>
+             <button onClick={() => props.completeTodo(item.id)} >Complete</button>
+             <button onClick={() => props.removeTodo(item.id)} >
+               Delete
+               </button> {" "}
+           </li>
+           );
+         })}
+     </ul>
     </div>
   );
 };
+
 
 
 
