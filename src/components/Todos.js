@@ -1,6 +1,6 @@
 import React, { useState, useRef} from 'react'
 import { connect } from 'react-redux';
-import { addTodos, removeTodos, updateTodos } from '../redux/reducer';
+import { addTodos, removeTodos, updateTodos, completeTodos } from '../redux/reducer';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     addTodo: (obj) => dispatch(addTodos(obj)),
     removeTodo: (id) => dispatch(removeTodos(id)),
     updateTodo: (obj) => dispatch(updateTodos(obj)), 
+    completeTodo: (id) => dispatch(completeTodos(id)), 
   }
 }
 
@@ -69,6 +70,7 @@ console.log('props from store', props);
              />
               
              <button onClick={() => changeFocus()} >Edit</button>
+             <button onClick={() => props.completeTodo(item.id)} >Complete</button>
              <button onClick={() => props.removeTodo(item.id)} >
                Delete
                </button> {" "}
