@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import {
@@ -7,9 +6,6 @@ import {
   updateTodos,
   completeTodos,
 } from "../redux/reducer";
-import Box from "@mui/material/Box";
-
-import TextField from "@mui/material/TextField";
 
 const mapStateToProps = (state) => {
   return {
@@ -34,31 +30,14 @@ const Todos = (props) => {
   };
   // console.log('props from store', props);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        display: "inline-flex",
-        justifyContent: "center",
-      }}
-    >
-      <TextField
-        id="outlined-input"
+    <div className="addTodos">
+      <input
         type="text"
         onChange={(e) => handleChange(e)}
         className="todo-input"
-        sx={{
-          bgcolor: "white",
-          borderRadius: 1,
-          opacity: 0.7,
-          width: 400,
-        }}
       />
-      <Button
-        sx={{
-          marginLeft: 3,
-        }}
-        color="inherit"
-        variant="outlined"
+      <button
+        className="add-btn"
         onClick={() =>
           props.addTodo({
             // here is object/todo
@@ -69,9 +48,9 @@ const Todos = (props) => {
         }
       >
         Add
-      </Button>
+      </button>
       <br />
-    </Box>
+    </div>
   );
 };
 
