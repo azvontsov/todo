@@ -1,4 +1,7 @@
 import React, { useRef } from "react";
+import { AiOutlineEdit } from "react-icons/ai";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { MdDeleteForever } from "react-icons/md";
 
 const TodoItem = (props) => {
   const { item, updateTodo, removeTodo, completeTodo } = props;
@@ -27,9 +30,20 @@ const TodoItem = (props) => {
         onKeyPress={(e) => update(item.id, inputRef.current.value, e)}
       />
       <div className="btns">
-        <button onClick={() => changeFocus()}>Edit</button>
-        <button onClick={() => completeTodo(item.id)}>Complete</button>
-        <button onClick={() => removeTodo(item.id)}>Delete</button>{" "}
+        <button onClick={() => changeFocus()}>
+          <AiOutlineEdit />
+        </button>
+        {item.completed === false && (
+          <button
+            style={{ color: "green" }}
+            onClick={() => completeTodo(item.id)}
+          >
+            <IoCheckmarkDoneSharp />
+          </button>
+        )}
+        <button style={{ color: "red" }} onClick={() => removeTodo(item.id)}>
+          <MdDeleteForever />
+        </button>{" "}
       </div>
       {item.completed && <span className="completed">done</span>}
     </li>
